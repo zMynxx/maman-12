@@ -82,60 +82,6 @@ public class Box3D {
     }
 
     /*
-     * @brief Check if given box is above this box.
-     * @param other Box3D object
-     * @return boolean
-     */
-    public boolean isAbove(Box3D other) {
-        return _height > other.height;
-    }
-
-    /*
-     * @brief Check if given box is above this box, aka this box is under the given box.
-     * @param other Box3D object
-     * @return boolean
-     */
-    public boolean isUnder(Box3D other) {
-        return other.isAbove(this);
-    }
-
-    /*
-     * @brief Check if given box is left to this box. 
-     * @param other Box3D object
-     * @return boolean
-     */
-    public boolean isLeft(Box3D other) {
-        return _width < other.width;
-    }
-
-    /*
-     * @brief Check if given box is left to this box, aka this box is right to the given box.
-     * @param other Box3D object
-     * @return boolean
-     */
-    public boolean isRight(Box3D other) {
-        return other.isLeft(this);
-    }
-
-    /*
-     * @brief Check if given box is behind this box.
-     * @param other Box3D object
-     * @return boolean
-     */
-    public boolean isBehind(Box3D other) {
-        return _length < other.length;
-    }
-
-    /*
-     * @brief Check if given box is in front of this box, aka this box is behind the given box. 
-     * @param other Box3D object
-     * @return boolean
-     */
-    public boolean isInFrontOf(Box3D other) {
-        return other.isBehind(this);
-    }
-
-    /*
      * @brief Move the box given delta values. 
      * @param dLength double value to move the box on the length-alengthis
      * @param dWidth double value to move the box on the width-alengthis
@@ -146,6 +92,19 @@ public class Box3D {
         return new Box3D(_base.move(_length + dLength, _width + dWidth, _height + dHeight), _length, _width, _height);
     }
 
+
+    /*
+     * @brief Calculate the up right back point of the box. 
+     * @return Point3D object
+     */
+    public Point3D getUpRightBackPoint() {
+        return new Point3D(_base.move(_length, _width, _height));
+    }
+
+    /*
+     * @brief Calculate the up right back point of the box. 
+     * @return Point3D object
+     */
     public Point3D getCenter() {
         return new Point3D(_base.move(_length / 2, _width / 2, _height / 2));
     }
@@ -157,5 +116,48 @@ public class Box3D {
      */
     public double distance(Box3D other) {
         return Math.sqrt(Math.pow(_length - other.length, 2) + Math.pow(_width - other.width, 2) + Math.pow(_height - other.height, 2));
+    }
+
+    /*
+     * @brief Calculate the volume of the box. 
+     * @return int
+     */
+    public int getVolume() {
+        return _length * _width * _height;
+    }
+
+    /*
+     * @brief Calculate the surface area of the box. 
+     * @return int
+     */
+    public int getSufaceArea() {
+        return 2 * (_length * _width + _length * _height + _width * _height);
+    }
+
+    /*
+     * @brief Check if this box can contain the other box. 
+     * @param other Box3D object
+     * @return boolean
+     */
+    public boolean isLargerCapacity(Box3D other) {
+        return getVolume() > other.getVolume();
+    }
+
+    /*
+     * @brief Check if this box can contain the other box. 
+     * @param other Box3D object
+     * @return boolean
+     */
+    public boolean contains(Box3D other) {
+        return _length > other.length && _width > other.width && _height > other.height;
+    }
+
+    /*
+     * @brief Check if this box is above the other box. 
+     * @param other Box3D object
+     * @return boolean
+     */
+    public boolean isAbove(Box3D other) {
+        return _base.isAbove(other.base);
     }
 }

@@ -56,12 +56,6 @@ public class Point3D {
         _z = z;
     }
 
-    public void setXYZ(double x, double y, double z) {
-        _x = x;
-        _y = y;
-        _z = z;
-    }
-
     // Print the point
     public String toString() {
         return "(" + _x + "," + _y + "," + _z + ")";
