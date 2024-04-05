@@ -12,9 +12,9 @@
 import java.util.Scanner;
 
 public class Point3D {
-    private double x = 0;
-    private double y = 0;
-    private double z = 0;
+    private double _x = 0;
+    private double _y = 0;
+    private double _z = 0;
 
     // Constructors
     public Point3D() {}
@@ -25,9 +25,9 @@ public class Point3D {
     }
 
     public Point3D(Point3D other) {
-        _x = other.x;
-        _y = other.y;
-        _z = other.z;
+        _x = other._x;
+        _y = other._y;
+        _z = other._z;
     }
 
     // Getters
@@ -67,7 +67,7 @@ public class Point3D {
      * @return boolean
      */
     public boolean equals(Point3D other) {
-        return _x == other.x && _y == other.y && _z == other.z;
+        return _x == other._x && _y == other._y && _z == other._z;
     }
 
     /*
@@ -76,7 +76,7 @@ public class Point3D {
      * @return boolean
      */
     public boolean isAbove(Point3D other) {
-        return _z > other.z;
+        return _z > other._z;
     }
 
     /*
@@ -94,7 +94,7 @@ public class Point3D {
      * @return boolean
      */
     public boolean isLeft(Point3D other) {
-        return _y < other.y;
+        return _y < other._y;
     }
 
     /*
@@ -112,7 +112,7 @@ public class Point3D {
      * @return boolean
      */
     public boolean isBehind(Point3D other) {
-        return _x < other.x;
+        return _x < other._x;
     }
 
     /*
@@ -143,6 +143,6 @@ public class Point3D {
      * @return double
      */
     public double distance(Point3D other) {
-        return Math.sqrt(Math.pow(_x - other.x, 2) + Math.pow(_y - other.y, 2) + Math.pow(_z - other.z, 2));
+        return Math.sqrt(Math.pow(_x - other._x, 2) + Math.pow(_y - other._y, 2) + Math.pow(_z - other._z, 2));
     }
 }

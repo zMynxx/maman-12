@@ -1,4 +1,4 @@
-#!/usr/bin/env -S just --justfile
+#!/usrenv -S just --justfile
 # ^ A shebang isn't required, but allows a justfile to be executed
 #   like a script, with `./justfile test`, for example.
 
@@ -15,7 +15,7 @@ default:
   @just --choose
 
 ## Simpele
-# docker run --interactive --tty --rm --volume $(pwd)/app:/project --workdir /project eclipse-temurin:17-jdk-jammy /bin/bash
+# docker run --interactive --tty --rm --volume $(pwd)/app:/project --workdir /project eclipse-temurin:17-jdk-jammy bash
 # Run the build command
 build:
     @echo "Building dev-container..."
@@ -38,19 +38,19 @@ alias rd := run-detached
 run-shell:
     @echo "Running interactive shell..."
     docker compose up --detach
-    docker compose exec --interactive --tty java-dev /bin/bash
+    docker compose exec --interactive --tty app bash
 alias rs := run-shell
 
 # Compile the project
 run-compile:
   @echo "Running compile..."
-  docker compose exec java-dev /bin/mvn build
+  docker compose exec app mvn build
 alias rc := run-compile
 
 # Run the test command
 run-test:
   @echo "Running test..."
-  docker compose exec java-dev /bin/mvn test
+  docker compose exec app mvn test
 alias rt := run-test
 
 # Restart container
